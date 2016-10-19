@@ -3,13 +3,13 @@ Gesture Recognition Application Programming Interface developed by Team Bandwago
 
 # Contents
 - "API" folder 
-  - contains the main arduino API that is used to enable the device to recognise gestures made and send the output to a socket. 
+  - Main arduino API that is used to enable the device to recognise gestures made and send the output to a socket. 
 
 - "demo" folder 
-  - contains programs to received processed data from an arduino device with a neural network implemented to produce an output.
+  - Programs to received processed data from an arduino device with a neural network implemented to produce an output.
 
 - "recording" folder 
-  - contains programs to record data to train the neural network. 
+  - Programs to record data to train the neural network with. 
 
 # Components Used
 - Arduino Feather Huzzah Adafruit Feather HUZZAH with ESP8266 WiFi
