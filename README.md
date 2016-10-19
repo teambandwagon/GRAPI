@@ -1,5 +1,5 @@
 # GRAPI
-Gesture Recognition Application Programming Interface developed by Team Bandwagon for the DECO3801 Project of 2016 Semester 2. Supervised by lecturer Alex Pudmenzky, and clients James Marsh and Jordan Du Rieu. 
+Gesture Recognition Application Programming Interface developed by Team Bandwagon for the DECO3801 Project of 2016 Semester 2. Supervised by lecturer Alex Pudmenzky, and clients James Marsh and Jordan Du Rieu. For more information about our project, please visit https://teambandwagon.uqcloud.net/. 
 
 # Contents
 - "API" folder 
