@@ -22,5 +22,5 @@ Gesture Recognition Application Programming Interface developed by Team Bandwago
   - To upload the API to an arduino device
 - Python
   - To run the demo programs 
-
+===============================================
 Extra documentation provided in the repo. 
