@@ -1,0 +1,32 @@
+################
+# neural_data.py
+#
+# contains the constants used in the neural network
+# mostly just pulled from the MATLAB script
+#
+# when we retrain the network hopefully we'll only need
+# to copy over to the constants in here
+
+# size of the layers in the network
+# number of inputs into the network (6values * 10datasets)
+input_num = 60
+inputs = list(range(input_num))
+# number of neurons in the 'hidden' layer (i.e. first layer)
+hidden_neuron_num = 20
+# indices of the hidden neurons
+hidden_neurons = list(i for i in range(hidden_neuron_num))
+# number of neurons in the output layer
+output_neuron_num = 9
+# indices of output neurons
+output_neurons = list(i for i in range(output_neuron_num))
+
+ymin = -1
+# constants added to each input when they're introduced to the network
+# size is <input_num> x 1
+
+offset = ^
+gain = ^
+bias_hidden = ^
+bias_output = ^
+weights_hidden = ^
+weights_output = ^

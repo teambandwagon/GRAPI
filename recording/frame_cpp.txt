@@ -1,0 +1,27 @@
+#include "NeuralData.hpp"
+
+namespace NeuralData {
+
+const int input_num = 60;
+const int hidden_num = 20;
+const int output_num = 9;
+
+const double yMin = -1.0;
+const double offset[60] = ^;
+const double gain[60] = ^;
+const double bias_output[9] = ^;
+const double bias_hidden[20] = ^;
+static const double _weights_output[9][20] = ^;
+const double* weights_output[9] = {
+	_weights_output[0], _weights_output[1], _weights_output[2],
+  _weights_output[3], _weights_output[4], _weights_output[5],
+  _weights_output[6], _weights_output[7], _weights_output[8]
+};
+static const double _weights_hidden[20][60] = ^;
+const double* weights_hidden[20] = {
+  _weights_hidden[0], _weights_hidden[1], _weights_hidden[2], _weights_hidden[3], _weights_hidden[4],
+  _weights_hidden[5], _weights_hidden[6], _weights_hidden[7], _weights_hidden[8], _weights_hidden[9],
+  _weights_hidden[10], _weights_hidden[11], _weights_hidden[12], _weights_hidden[13], _weights_hidden[14],
+  _weights_hidden[15], _weights_hidden[16], _weights_hidden[17], _weights_hidden[18], _weights_hidden[19]
+};
+};

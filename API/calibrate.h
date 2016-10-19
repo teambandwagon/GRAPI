@@ -1,0 +1,1 @@
+void calibrate_sensor(Adafruit_BNO055& bno);
