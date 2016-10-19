@@ -10,3 +10,15 @@ Gesture Recognition Application Programming Interface developed by Team Bandwago
 
 - "recording" folder 
   - contains programs to record data to train the neural network. 
+
+# Components Used
+- Feather Huzzah
+- BNO????
+
+# Programs Required
+- MATLAB
+  - A license may be required if using for over 30 days
+- Arduino
+  - To upload the API to an arduino device
+- Python
+  - To run the demo programs 
