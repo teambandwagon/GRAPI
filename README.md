@@ -12,8 +12,8 @@ Gesture Recognition Application Programming Interface developed by Team Bandwago
   - contains programs to record data to train the neural network. 
 
 # Components Used
-- Feather Huzzah
-- BNO????
+- Arduino Feather Huzzah Adafruit Feather HUZZAH with ESP8266 WiFi
+- Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout – BNO055
 
 # Programs Required
 - MATLAB
@@ -22,3 +22,5 @@ Gesture Recognition Application Programming Interface developed by Team Bandwago
   - To upload the API to an arduino device
 - Python
   - To run the demo programs 
+
+Extra documentation provided in the repo. 
