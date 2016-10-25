@@ -19,3 +19,9 @@ Contents:
 	"results.txt" file contains the associated results for each set of data in the data file
 
 	"server.py" reads data being sent from the arduino, and saves it in a folder 
+
+	"rejigging.py" reads the neural network weights from the matlab file and creates the .py and .cpp files
+
+	"frame_cpp.txt" contains the base framework for the NeuralData.cpp file
+
+	"frame_py.txt" contains the base framework for the neural_data.py file

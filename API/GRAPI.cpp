@@ -1,34 +1,35 @@
 #include "GRAPI.hpp"
 
-static void softmax(int num, const double* values, double* outputs) {
-  double sum = 0.0;
-  for (int i = 0; i < num; i++) {
-    sum += exp(values[i]);
-  }
-  if (sum == 0.0) {
-    sum = 1.0;
-  }
-  for (int i = 0; i < num; i++) {
-    outputs[i] = exp(values[i]) / sum;
-  }
-}
+/* stores the received data points
+ *
+ * to avoid needing to shift the entire set of 60 doubles every time a point is
+ * added, the data is stored in a ring buffer
+ * when the actual ANN is used the ring buffer is unwrapped into a normal array 
+ * by the function normalize
+ *
+ * needs to be called with fresh data roughly once every 100ms
+ *
+ * x,y,z: acceleration values
+ * gx, gy, gz: orientation values
+ */
+void GRAPI::record_point(double x, double y, double z, double gx, double gy, double gz) {
+	data[(ringBufferOffset * 6) + 0] = x;
+	data[(ringBufferOffset * 6) + 1] = y;
+	data[(ringBufferOffset * 6) + 2] = z;
+	data[(ringBufferOffset * 6) + 3] = gx;
+	data[(ringBufferOffset * 6) + 4] = gy;
+	data[(ringBufferOffset * 6) + 5] = gz;
 
-void GRAPI::record_point(float x, float y, float z, float gx, float gy, float gz) {
-	data[(roundRobin * 6) + 0] = x;
-	data[(roundRobin * 6) + 1] = y;
-	data[(roundRobin * 6) + 2] = z;
-	data[(roundRobin * 6) + 3] = gx;
-	data[(roundRobin * 6) + 4] = gy;
-	data[(roundRobin * 6) + 5] = gz;
-
-  roundRobin++;
-  if (roundRobin == 10) {
-     roundRobin = 0;
+  ringBufferOffset++;
+  if (ringBufferOffset == 10) {
+     ringBufferOffset = 0;
   }
 	
 	computed = false;
 }
 
+/* unravels the recorded data for the neural network
+ */
 void GRAPI::normalize(void) {
   double tmpData[6];
   for (int i = 0; i < 6; i++) {
@@ -36,34 +37,42 @@ void GRAPI::normalize(void) {
   }
   for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 6; j++) {
-        data[(i * 6) + j] = data[(((roundRobin + i) % 10) * 6) + j];
+        data[(i * 6) + j] = data[(((ringBufferOffset + i) % 10) * 6) + j];
       }
   }
 
-  roundRobin = 0;
+  ringBufferOffset = 0;
 }
 
+/* runs the data through the neural network
+ *
+ * ANN is slow, so we want to calculate the probabilities only when we need to
+ * 'computed' keeps track of whether we've processed the current set of data, so
+ * we only use the ANN when we want to check for a gesture and the gesture probabilities
+ * aren't up-to-date with the movement data
+ */
 void GRAPI::compute(void) {
 	if (!computed) {
 		computed = true;
-    normalize();
-		net.process(data, raw_outputs);
-		
-		softmax(NeuralData::output_num, raw_outputs, outputs);
+		normalize();
+		net.process(data, outputs);
 	}
 }
 
-GRAPI::GRAPI(void)  : computed(false), roundRobin(0) {
+// initializes the GRAPI object
+GRAPI::GRAPI(void)  : computed(false), ringBufferOffset(0) {
 	for (int gesture = 0; gesture < GESTURE_COUNT; gesture++) {
   		thresholds[gesture] = DEFAULT_THRESHOLD;
 	}
 }
 
+// gets the probabilty of the given gesture
 double GRAPI::probability(Gesture gesture) {
   compute();
 	return outputs[(int) gesture];
 }
 
+// checks if a gesture probabilty is above the threshold
 bool GRAPI::gesture(Gesture gesture) {
 	if (outputs[gesture] > thresholds[gesture]) {
 		return true;
@@ -72,14 +81,17 @@ bool GRAPI::gesture(Gesture gesture) {
 	}
 }
 
+// gets the threshold
 double GRAPI::get_threshold(Gesture gesture) {
 	return thresholds[gesture];
 }
 
+// sets the threshold
 void GRAPI::set_threshold(Gesture gesture, double threshold) {
 	thresholds[gesture] = threshold;
 }
 
+// returns the most likely gesture from the local data stored
 Gesture GRAPI::gesture(void) {
 	compute();
 	int best = 0;

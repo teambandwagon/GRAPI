@@ -4,7 +4,6 @@
 #include <utility/imumaths.h>
 #include <EEPROM.h>
 
-
 const int BNO055_SAMPLERATE_DELAY_MS = 100;
 
 /* displays the sensor calibration */
