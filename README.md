@@ -8,6 +8,9 @@ Gesture Recognition Application Programming Interface developed by Team Bandwago
 - "demo" folder 
   - Programs to received processed data from an arduino device with a neural network implemented to produce an output.
 
+- "demogame" folder
+  - Program to receive process data and play a pong game.
+
 - "recording" folder 
   - Programs to record data to train the neural network with. 
 
