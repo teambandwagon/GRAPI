@@ -53,7 +53,7 @@ WiFiClient client;
 const int port = 9877;
 //const char* ip = "10.1.1.10";
 //const char* ip = "10.52.37.153";
-const char* ip = "192.168.1.234";
+const char* ip = "192.168.1.136";
 
 // connects to the defined Wifi network 
 void init_wifi(void) {
@@ -63,7 +63,7 @@ void init_wifi(void) {
 //  IPAddress gateway(10, 52, 1, 1);
 //  IPAddress subnet(255, 255, 0, 0);
 
-  IPAddress myip(192, 168, 1, 238);
+  IPAddress myip(192, 168, 1, 138);
   IPAddress gateway(192, 168, 1, 1);
   IPAddress subnet(255, 255, 255, 0);
 

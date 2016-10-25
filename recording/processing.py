@@ -23,6 +23,9 @@ def process_file(folder, fileName, data, results, config):
         for line in f:
             line = line.strip()
             if (len(line) != 0 and line[0] != '#'):
+                if len(line.split(",")) != 60:
+                    print(fileName, len(line.split(",")))
+                    print (line)
                 data.write(line + "\n")
                 results.write(resultLine)
 
